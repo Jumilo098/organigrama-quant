@@ -8,11 +8,11 @@ computadora y tu primera versión propia (v2) lista para compartir.
 
 ---
 
-## Paso 0 · Acepta la invitación
+## Paso 0 · Cuenta de GitHub
 
-Te llegó un correo de GitHub con la invitación a `Jumilo098/organigrama-quant`. Acéptala (o entra a
-https://github.com/Jumilo098/organigrama-quant/invitations). Si no tienes cuenta de GitHub, créala gratis en
-https://github.com/signup con el **mismo correo** con el que te inscribiste al Instituto.
+Necesitas una cuenta de GitHub (gratis en https://github.com/signup, idealmente con el **mismo correo** con el que
+te inscribiste al Instituto). Si te llegó una invitación al repositorio, acéptala en
+https://github.com/Jumilo098/organigrama-quant/invitations.
 
 ## Paso 1 · Instala lo necesario (una sola vez)
 
