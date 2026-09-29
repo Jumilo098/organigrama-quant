@@ -1,0 +1,71 @@
+{
+  "bot": "b10_estacionalidad_commodities",
+  "desde": "2000-07-17",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": 0.26288668002795135,
+    "cagr": 0.01888730153595275,
+    "vol": 0.08492058012557385,
+    "max_dd": -0.28733705565715273,
+    "dias": 6602,
+    "n_trades": 307,
+    "win_rate": 0.5146579804560261,
+    "ret_medio_trade": 0.010107982653580986,
+    "profit_factor": 1.2973568737263725,
+    "suma_sin_top3pct": -0.015231344981332384,
+    "suma_total": 3.1031506746493625
+  },
+  "dentro_muestra": {
+    "sharpe": 0.31607245292039243,
+    "cagr": 0.021150094731660962,
+    "vol": 0.07512904455011507,
+    "max_dd": -0.28733705565715273,
+    "dias": 5410,
+    "n_trades": 214,
+    "win_rate": 0.5046728971962616,
+    "ret_medio_trade": 0.01352180770852476,
+    "profit_factor": 1.4298146930757947,
+    "suma_sin_top3pct": 0.7578467533044249,
+    "suma_total": 2.8936668496242985
+  },
+  "fuera_muestra": {
+    "sharpe": 0.13256670620476954,
+    "cagr": 0.008732090261089454,
+    "vol": 0.11972711879561898,
+    "max_dd": -0.17218326658975724,
+    "dias": 1192,
+    "n_trades": 93,
+    "win_rate": 0.5376344086021505,
+    "ret_medio_trade": 0.0022525142475813397,
+    "profit_factor": 1.0565649638908208,
+    "suma_sin_top3pct": -0.7400820746208454,
+    "suma_total": 0.20948382502506457
+  },
+  "placebo_n": 100,
+  "placebo_sharpe_mediana": 0.2134986472832147,
+  "placebo_percentil": 62.0,
+  "notas": [
+    "TRAMPA: los futuros continuos de yfinance empalman contratos sin ajustar; cada roll mete un salto de precio que no es retorno real (sobre todo en NG y CL con contango fuerte).",
+    "Se descartan cierres <= 0 (el crudo cotizó negativo en abr-2020).",
+    "Pocas operaciones por año y por mercado: el t-estadístico con 5-20 años es frágil y hay 72 celdas mes×mercado probadas a la vez (múltiples comparaciones).",
+    "Costo 5 pb por lado; no incluye roll ni margen de futuros."
+  ],
+  "veredicto": "DÉBIL",
+  "motivos": [
+    "✅ Sharpe dentro de muestra > 0,3",
+    "❌ Sharpe fuera de muestra > 0,3",
+    "❌ supera al 95 % de los placebos",
+    "✅ ≥ 80 operaciones",
+    "❌ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b10_estacionalidad_commodities",
+    "nombre": "Estacionalidad en materias primas (futuros)",
+    "concepto": "Aprovechar patrones de temporada: el gas natural antes del invierno, los granos en siembra y cosecha, la gasolina de calefacción. El calendario es la señal.",
+    "regla": "Para cada futuro y cada mes: media y t-estadístico del retorno de ese mes del calendario en TODOS los años anteriores (mínimo 5). Largo el mes completo si t > 1,5; corto si t < -1,5. Cartera equiponderada de NG, CL, HO, ZC, ZW, ZS.",
+    "para_quien": "Microfuturos en EE. UU. y CFD de materias primas en Latinoamérica.",
+    "datos": "yfinance futuros continuos diarios NG=F, CL=F, HO=F, ZC=F, ZW=F, ZS=F",
+    "potencial": "Bajo a medio. Muy descorrelacionado, pero son pocas operaciones al año: validar 80 tomaría años. Sirve más como filtro para otros bots que como aporte propio.",
+    "siguiente": "Usarlo como filtro (no operar en contra de la temporada) sobre un bot de tendencia en gas o crudo."
+  }
+}

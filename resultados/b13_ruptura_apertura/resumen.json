@@ -1,0 +1,77 @@
+{
+  "bot": "b13_ruptura_apertura",
+  "desde": "2019-07-16",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": 0.10320003939278105,
+    "cagr": 0.006549405688961452,
+    "vol": 0.11436440834359587,
+    "max_dd": -0.3365620855383582,
+    "dias": 2240,
+    "n_trades": 1774,
+    "win_rate": 0.4971815107102593,
+    "ret_medio_trade": 5.9137724896360846e-05,
+    "profit_factor": 1.0190645078653213,
+    "suma_sin_top3pct": -1.1483221372278702,
+    "suma_total": 0.10491032396614414,
+    "R_medio": 0.005913772489636075,
+    "R_medio_sin_top3pct": -0.06672412186100349
+  },
+  "dentro_muestra": {
+    "sharpe": -0.94048202890195,
+    "cagr": -0.12551082524368662,
+    "vol": 0.10967657875775232,
+    "max_dd": -0.33059219393720796,
+    "dias": 762,
+    "n_trades": 606,
+    "win_rate": 0.47194719471947194,
+    "ret_medio_trade": -0.0005185546019690717,
+    "profit_factor": 0.8439229934022873,
+    "suma_sin_top3pct": -0.6786702787844616,
+    "suma_total": -0.31424408879325744,
+    "R_medio": -0.05185546019690716,
+    "R_medio_sin_top3pct": -0.11542011543953432
+  },
+  "fuera_muestra": {
+    "sharpe": 0.6096577394551667,
+    "cagr": 0.08283128389313688,
+    "vol": 0.11656846179890341,
+    "max_dd": -0.16348244632734943,
+    "dias": 1478,
+    "n_trades": 1168,
+    "win_rate": 0.5102739726027398,
+    "ret_medio_trade": 0.00035886507941729575,
+    "profit_factor": 1.1201180208926727,
+    "suma_sin_top3pct": -0.4605594200248122,
+    "suma_total": 0.4191544127594014,
+    "R_medio": 0.03588650794172958,
+    "R_medio_sin_top3pct": -0.0406495516350231
+  },
+  "placebo_n": 100,
+  "placebo_sharpe_mediana": -0.11698427973498021,
+  "placebo_percentil": 78.0,
+  "R_medio": 0.005913772489636075,
+  "notas": [
+    "Stop por ATR en vez de 'al otro lado del rango': el motor v1 solo admite stops en múltiplos de ATR.",
+    "Se parece al bot 01 (ruptura + tendencia): revisar la correlación antes de sumarlo a la cartera.",
+    "Spread anterior a 2024-04-16 modelado con la mediana (el terminal guarda 0)."
+  ],
+  "veredicto": "DÉBIL",
+  "motivos": [
+    "❌ Sharpe dentro de muestra > 0,3",
+    "✅ Sharpe fuera de muestra > 0,3",
+    "❌ supera al 95 % de los placebos",
+    "✅ ≥ 80 operaciones",
+    "❌ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b13_ruptura_apertura",
+    "nombre": "Ruptura del rango de apertura (USTEC M15)",
+    "concepto": "Operar rupturas de rango de corto plazo, como el rango de apertura de la sesión en índices.",
+    "regla": "Rango = máximo y mínimo de 9:30 a 10:00 de Nueva York (horario de verano respetado). Primera vela M15 que cierra fuera del rango antes de las 15:00 NY: entra a favor. Sale a las 15:45 NY o con stop de 4 ATR(14) M15. Una operación por día como máximo. Riesgo 1 %.",
+    "para_quien": "Cuentas pequeñas con CFD en Latinoamérica o microfuturos (MNQ/MES) en EE. UU.",
+    "datos": "MT5 Exness USTEC M15 (velas BID + spread real desde 2024-04-16)",
+    "potencial": "Medio, con advertencia: muchas rupturas son falsas y la estrategia se parece bastante a la número 1; no aporta descorrelación si ya tienes el Runner.",
+    "siguiente": "Medir correlación contra b01 y probar filtro de volatilidad del rango (rangos estrechos vs anchos)."
+  }
+}

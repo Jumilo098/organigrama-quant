@@ -1,0 +1,7 @@
+datos/cache/
+datos/ninera/
+informes/
+__pycache__/
+*.pyc
+.venv/
+.env

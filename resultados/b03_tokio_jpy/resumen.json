@@ -1,0 +1,77 @@
+{
+  "bot": "b03_tokio_jpy",
+  "desde": "2017-01-01",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": -0.11998253992319867,
+    "cagr": -0.0052000479585994075,
+    "vol": 0.03144975476794561,
+    "max_dd": -0.13273024461432137,
+    "dias": 3004,
+    "n_trades": 372,
+    "win_rate": 0.4946236559139785,
+    "ret_medio_trade": -0.00012091822470651563,
+    "profit_factor": 0.9324663471150654,
+    "suma_sin_top3pct": -0.23284400053840593,
+    "suma_total": -0.044981579590823814,
+    "R_medio": -0.01209182247065158,
+    "R_medio_sin_top3pct": -0.06449972314083269
+  },
+  "dentro_muestra": {
+    "sharpe": -0.5239043947953805,
+    "cagr": -0.01569926088675122,
+    "vol": 0.02443247134215755,
+    "max_dd": -0.10214124600666641,
+    "dias": 1521,
+    "n_trades": 178,
+    "win_rate": 0.5337078651685393,
+    "ret_medio_trade": -0.00043403835672266875,
+    "profit_factor": 0.7734155438447209,
+    "suma_sin_top3pct": -0.12324002851124424,
+    "suma_total": -0.07725882749663504,
+    "R_medio": -0.04340383567226687,
+    "R_medio_sin_top3pct": -0.07123701070014116
+  },
+  "fuera_muestra": {
+    "sharpe": 0.14704451798157542,
+    "cagr": 0.005984555496389765,
+    "vol": 0.03729984692801058,
+    "max_dd": -0.05775026453907406,
+    "dias": 1483,
+    "n_trades": 194,
+    "win_rate": 0.4587628865979381,
+    "ret_medio_trade": 0.00016637756652480008,
+    "profit_factor": 1.0992870338189837,
+    "suma_sin_top3pct": -0.10894027937119277,
+    "suma_total": 0.03227724790581121,
+    "R_medio": 0.01663775665248,
+    "R_medio_sin_top3pct": -0.057946957112336536
+  },
+  "placebo_n": 100,
+  "placebo_sharpe_mediana": -0.13190698796200573,
+  "placebo_percentil": 54.0,
+  "R_medio": -0.01209182247065158,
+  "notas": [
+    "Versión genérica: el caso del fixing de Tokio (09:55 JST, días gotobi) vive en el repo tokio-reversal-caso con su propia auditoría; este v1 no distingue días gotobi.",
+    "Horario fijo en UTC: Londres abre a las 07:00 UTC en verano y 08:00 UTC en invierno; el v1 no ajusta el horario de verano británico.",
+    "Spread anterior a 2024-04-16 modelado con la mediana; el spread asiático real suele ser más ancho."
+  ],
+  "veredicto": "DÉBIL",
+  "motivos": [
+    "❌ Sharpe dentro de muestra > 0,3",
+    "❌ Sharpe fuera de muestra > 0,3",
+    "❌ supera al 95 % de los placebos",
+    "✅ ≥ 80 operaciones",
+    "❌ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b03_tokio_jpy",
+    "nombre": "Tokio empuja, Londres devuelve (USDJPY M15)",
+    "concepto": "Los movimientos del yen en la sesión asiática tienden a revertirse al abrir Europa. El bot opera en contra del empuje de Tokio cuando entra Londres.",
+    "regla": "Movimiento asiático = cierre 06:45 − apertura 00:00 UTC. Si supera 0,5 ATR diario (14 días, del día anterior), a las 07:00 UTC entra en contra. Sale a las 12:00 UTC o con stop de 8 ATR(14) M15. Riesgo 1 %.",
+    "para_quien": "Cuentas pequeñas con CFD en Latinoamérica, con VPS: la sesión cae de noche en América y el bot opera mientras duermes.",
+    "datos": "MT5 Exness USDJPY M15 (hora del servidor = UTC; velas BID + spread real desde 2024-04-16)",
+    "potencial": "Medio. Las anomalías de horario son estrechas, se degradan y las intervenciones del Banco de Japón pueden romperlas. A cambio, es muy poco correlacionado con el oro.",
+    "siguiente": "Cruzar con el caso del fixing gotobi (repo tokio-reversal-caso) y separar días gotobi / no gotobi."
+  }
+}

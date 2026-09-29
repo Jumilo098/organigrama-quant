@@ -1,0 +1,73 @@
+{
+  "bot": "b07_eventos_resultados",
+  "desde": "2015-07-24",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": 0.35644313064884653,
+    "cagr": 0.03699030688431226,
+    "vol": 0.12359475452111324,
+    "max_dd": -0.39354698574764835,
+    "dias": 2812,
+    "n_trades": 562,
+    "win_rate": 0.5124555160142349,
+    "ret_medio_trade": 0.004082939087576149,
+    "profit_factor": 1.137622372291714,
+    "suma_sin_top3pct": -1.810294899364493,
+    "suma_total": 2.294611767217796
+  },
+  "dentro_muestra": {
+    "sharpe": 0.4864999272151511,
+    "cagr": 0.048353833049142425,
+    "vol": 0.10932812862648965,
+    "max_dd": -0.18517715680727487,
+    "dias": 1623,
+    "n_trades": 196,
+    "win_rate": 0.5459183673469388,
+    "ret_medio_trade": 0.007289467469704455,
+    "profit_factor": 1.2689288804217067,
+    "suma_sin_top3pct": 0.21279744490686614,
+    "suma_total": 1.4287356240620732
+  },
+  "fuera_muestra": {
+    "sharpe": 0.2243405178303614,
+    "cagr": 0.02180283081012724,
+    "vol": 0.14079929769357855,
+    "max_dd": -0.2830012774663464,
+    "dias": 1189,
+    "n_trades": 366,
+    "win_rate": 0.49453551912568305,
+    "ret_medio_trade": 0.0023657818119008837,
+    "profit_factor": 1.0762177525439012,
+    "suma_sin_top3pct": -2.019600252611509,
+    "suma_total": 0.8658761431557234
+  },
+  "placebo_n": 100,
+  "placebo_sharpe_mediana": -0.28674132464673985,
+  "placebo_percentil": 99.0,
+  "notas": [
+    "Tamaño: 3 cupos (cada posición pesa 1/max(abiertas, 3)).",
+    "Proxy de sorpresa = reacción del precio del día (no el consenso de analistas): la regla compra lo que ya subió; no es el PEAD clásico por sorpresa de BPA.",
+    "Universo de 40 large caps elegidas HOY: sesgo de supervivencia fuerte (son las ganadoras de la década).",
+    "El historial 'recent' de la SEC trae ~1.000 filings por empresa; hay 8-K 2.02 de 1100 anuncios, 562 superan ±3%.",
+    "Días sin posiciones abiertas = 0 % (efectivo). Placebo: mismas acciones, fecha desplazada al azar.",
+    "El buscador de EDGAR no resolvió el CIK de GOOGL, JPM, BAC, ORCL y GS: quedan fuera (35 de 40)."
+  ],
+  "veredicto": "DÉBIL",
+  "motivos": [
+    "✅ Sharpe dentro de muestra > 0,3",
+    "❌ Sharpe fuera de muestra > 0,3",
+    "✅ supera al 95 % de los placebos",
+    "✅ ≥ 80 operaciones",
+    "❌ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b07_eventos_resultados",
+    "nombre": "Deriva post-resultados (8-K de la SEC, 40 large caps)",
+    "concepto": "Operar la reacción a los resultados: el retail no gana la carrera de los primeros segundos, pero sí puede capturar la deriva de los días siguientes.",
+    "regla": "Día de reacción = sesión en la que el mercado ve el 8-K 2.02 (si se publicó tras las 16:00 de Nueva York, la sesión siguiente). Si ese día el precio sube > 3 %, largo al cierre; si cae > 3 %, corto. Salida a las 20 sesiones. Cada posición pesa 1/max(abiertas, 3); costo 10 pb por lado.",
+    "para_quien": "Perfil intermedio-avanzado con datos confiables, sin importar el país.",
+    "datos": "SEC EDGAR (fechas y hora de los 8-K ítem 2.02) + precios diarios yfinance",
+    "potencial": "Medio. Aquí un agente de lenguaje brilla porque lee y clasifica la noticia, pero el costo en tokens y la latencia pesan más que en cualquier otra idea.",
+    "siguiente": "Sustituir el proxy por la sorpresa real (consenso vs. reportado) y dejar que un agente clasifique el tono de la guía; medir si esa capa añade algo sobre la reacción de precio."
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "bot": "b06_insiders",
+  "desde": "2015-01-08",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": -0.17169145658746493,
+    "cagr": -0.08785302121788108,
+    "vol": 0.28976417290841655,
+    "max_dd": -0.7518053511450199,
+    "dias": 2948,
+    "n_trades": 452,
+    "win_rate": 0.4646017699115044,
+    "ret_medio_trade": -0.005434597303886926,
+    "profit_factor": 0.9137268428856131,
+    "suma_sin_top3pct": -10.792106519045976,
+    "suma_total": -2.4564379813568906
+  },
+  "dentro_muestra": {
+    "sharpe": 0.036684073522593695,
+    "cagr": -0.02358459252301426,
+    "vol": 0.2569368805933057,
+    "max_dd": -0.6792288456351829,
+    "dias": 1759,
+    "n_trades": 210,
+    "win_rate": 0.5,
+    "ret_medio_trade": 0.002673483482509355,
+    "profit_factor": 1.0516171248125452,
+    "suma_sin_top3pct": -2.647765326873122,
+    "suma_total": 0.5614315313269646
+  },
+  "fuera_muestra": {
+    "sharpe": -0.4129437152532763,
+    "cagr": -0.17505095987710728,
+    "vol": 0.33247624328035597,
+    "max_dd": -0.6998590173251911,
+    "dias": 1189,
+    "n_trades": 242,
+    "win_rate": 0.43388429752066116,
+    "ret_medio_trade": -0.012470535176379565,
+    "profit_factor": 0.8284906696665391,
+    "suma_sin_top3pct": -7.689780455920296,
+    "suma_total": -3.0178695126838546
+  },
+  "placebo_n": 100,
+  "placebo_sharpe_mediana": 0.07228783347975423,
+  "placebo_percentil": 19.0,
+  "exceso_anual_vs_spy": -0.195346193707797,
+  "notas": [
+    "Sesgo de supervivencia: yfinance no tiene precio de muchas empresas deslistadas; los eventos sin precio se descartan, y suelen ser los peores.",
+    "openinsider publica la hora del filing; se entra al cierre de la PRIMERA sesión posterior a la fecha del filing (sin mirar el futuro, pero se pierde parte de la reacción del día).",
+    "Días sin posiciones abiertas cuentan como 0 % (efectivo).",
+    "Placebo: los mismos tickers con la fecha de entrada desplazada ±20-250 sesiones al azar.",
+    "Tamaño: 5 cupos (cada compra pesa 1/5 de la cuenta, o menos si hay más de 5 abiertas).",
+    "Eventos: 705 compras (top 5/mes); tickers con precio: 286/451."
+  ],
+  "veredicto": "REPROBADO v1",
+  "motivos": [
+    "❌ Sharpe dentro de muestra > 0,3",
+    "❌ Sharpe fuera de muestra > 0,3",
+    "❌ supera al 95 % de los placebos",
+    "✅ ≥ 80 operaciones",
+    "❌ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b06_insiders",
+    "nombre": "Compras de insiders con dinero propio (formulario 4)",
+    "concepto": "Seguir al directivo que compra acciones de su empresa con su propio dinero: suele saber algo. Las ventas no se siguen (impuestos, planes programados).",
+    "regla": "Compras (código P) >= 500.000 USD de directivos (sin los que solo son accionistas del 10 %); las 5 más grandes de cada mes. Largo al cierre de la primera sesión después del filing, salida a las 20 sesiones. Cada posición pesa 1/max(abiertas, 5); costo 10 pb por lado.",
+    "para_quien": "Cuentas de acciones en Interactive Brokers desde 2.000-5.000 USD, desde EE. UU. o Latinoamérica.",
+    "datos": "openinsider.com (formularios 4 de la SEC) + precios diarios yfinance",
+    "potencial": "Alto dentro de la comunidad: la señal ya está procesada en Profeta, casi ningún retail hispano la usa y cuesta poco convertirla en bot. Límite: las compras relevantes son pocas y la muestra crece lento.",
+    "siguiente": "Pasar la fuente a Profeta (que ya separa compras con dinero propio de compensación y mide el % de la posición) y probar el filtro 'amplía > 10 % su posición' y las compras en grupo (cluster buys)."
+  }
+}

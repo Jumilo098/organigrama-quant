@@ -1,0 +1,21 @@
+Cultivos: b01_tendencia_oro, b03_tokio_jpy, b04_momentum_acciones, b07_eventos_resultados, b08_volatilidad, b09_cripto_momentum, b10_estacionalidad_commodities, b12_overnight, b13_ruptura_apertura, b14_cross_asset  (2019-07-16 → 2026-09-29)
+Correlación media entre bots: 0.03 → N efectivo 7.7 de 10
+
+Ambas carteras escaladas a 20 % de volatilidad anual.
+
+| Cartera | Sharpe | CAGR | DD máx. | Ruina (−50 % en 2 años) |
+|---|---|---|---|---|
+| Temporizador (pesos fijos) | 1.20 | 25.7 % | -29.6 % | 0.0 % |
+| Mayordomo (reglamento) | 1.04 | 21.5 % | -33.7 % | 0.0 % |
+
+Peso medio que asignó el mayordomo:
+b01_tendencia_oro                  9.8 %
+b03_tokio_jpy                      9.5 %
+b04_momentum_acciones             10.5 %
+b07_eventos_resultados             9.9 %
+b08_volatilidad                   10.2 %
+b09_cripto_momentum               10.4 %
+b10_estacionalidad_commodities     9.9 %
+b12_overnight                     10.2 %
+b13_ruptura_apertura               9.9 %
+b14_cross_asset                    9.7 %

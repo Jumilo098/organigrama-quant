@@ -1,0 +1,52 @@
+{
+  "bot": "b15_datos_alternativos",
+  "desde": "2026-08-31",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": NaN,
+    "cagr": NaN,
+    "vol": NaN,
+    "max_dd": NaN,
+    "dias": 30,
+    "n_trades": 0
+  },
+  "dentro_muestra": {
+    "sharpe": NaN,
+    "cagr": NaN,
+    "vol": NaN,
+    "max_dd": NaN,
+    "dias": 0,
+    "n_trades": 0
+  },
+  "fuera_muestra": {
+    "sharpe": NaN,
+    "cagr": NaN,
+    "vol": NaN,
+    "max_dd": NaN,
+    "dias": 30,
+    "n_trades": 0
+  },
+  "placebo_n": 0,
+  "notas": [
+    "Sin muestra: primero se construye el dataset (niñera). La API de Polymarket no respondió desde esta máquina (ConnectionError); en Colombia el acceso suele estar bloqueado a nivel de red. Hay que correr el colector desde otra red/VPS.",
+    "Grok (sentimiento en X) queda como segunda fuente para el colector."
+  ],
+  "veredicto": "MUESTRA INSUFICIENTE",
+  "motivos": [
+    "❌ Sharpe dentro de muestra > 0,3",
+    "❌ Sharpe fuera de muestra > 0,3",
+    "❌ supera al 95 % de los placebos",
+    "❌ ≥ 80 operaciones",
+    "❌ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b15_datos_alternativos",
+    "nombre": "Datos alternativos (Polymarket → BTC)",
+    "concepto": "Usar fuentes poco exploradas — probabilidades de Polymarket, sentimiento en X, insiders en mercados de predicción — como disparador. Nadie compite ahí; por eso también puede ser puro ruido.",
+    "regla": "v1: registrar cada día las probabilidades de los mercados más líquidos de Polymarket (colector). Backtest mínimo si hay historial: si la probabilidad de un mercado cripto sube más de 5 puntos en 7 días, largo BTC los 5 días siguientes.",
+    "para_quien": "Exploradores con capital pequeño, dentro del 10 % especulativo.",
+    "datos": "API pública de Polymarket (gamma-api / clob prices-history) + yfinance BTC-USD. Grok (sentimiento en X) queda como fuente futura.",
+    "potencial": "El de mayor varianza. Donde más posibilidad hay de un edge propio (nadie compite ahí) y donde más probable es que sea ruido. Terreno natural del bot desechable.",
+    "siguiente": "Dejar el colector corriendo (niñera) varias semanas y solo entonces formular hipótesis pre-registradas."
+  }
+}

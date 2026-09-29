@@ -1,0 +1,77 @@
+{
+  "bot": "b02_reversion_eurgbp",
+  "desde": "2017-01-01",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": 0.03768791041269882,
+    "cagr": -0.0027695282720502368,
+    "vol": 0.1147196582966085,
+    "max_dd": -0.3241089170899646,
+    "dias": 3004,
+    "n_trades": 1180,
+    "win_rate": 0.4711864406779661,
+    "ret_medio_trade": 4.36774508682804e-05,
+    "profit_factor": 1.0083881406484811,
+    "suma_sin_top3pct": -0.8866440330187313,
+    "suma_total": 0.051539392024570876,
+    "R_medio": 0.004367745086828037,
+    "R_medio_sin_top3pct": -0.07743616008897225
+  },
+  "dentro_muestra": {
+    "sharpe": 0.126647609805652,
+    "cagr": 0.009661550556086418,
+    "vol": 0.11637410739831344,
+    "max_dd": -0.3241089170899646,
+    "dias": 1521,
+    "n_trades": 606,
+    "win_rate": 0.4603960396039604,
+    "ret_medio_trade": 0.00014679437353544235,
+    "profit_factor": 1.0278593206445539,
+    "suma_sin_top3pct": -0.4345468637578236,
+    "suma_total": 0.08895739036247807,
+    "R_medio": 0.014679437353544225,
+    "R_medio_sin_top3pct": -0.07390252784997005
+  },
+  "fuera_muestra": {
+    "sharpe": -0.056251596852064996,
+    "cagr": -0.015713108138186938,
+    "vol": 0.11303295607086046,
+    "max_dd": -0.17097255864221894,
+    "dias": 1483,
+    "n_trades": 574,
+    "win_rate": 0.48257839721254353,
+    "ret_medio_trade": -6.518815041447245e-05,
+    "profit_factor": 0.9873211935321982,
+    "suma_sin_top3pct": -0.4431592463984897,
+    "suma_total": -0.03741799833790718,
+    "R_medio": -0.006518815041447248,
+    "R_medio_sin_top3pct": -0.07956180366220639
+  },
+  "placebo_n": 100,
+  "placebo_sharpe_mediana": -0.7013412710880433,
+  "placebo_percentil": 100.0,
+  "R_medio": 0.004367745086828037,
+  "notas": [
+    "Cambio de régimen: el Brexit (2016) es justo el tipo de evento que rompe un par 'de vecinos'; los datos arrancan en 2017, así que el backtest no ve ese golpe.",
+    "Swap no modelado (posiciones de hasta 3 días).",
+    "Spread anterior a 2024-04-16 modelado con la mediana (el terminal guarda 0)."
+  ],
+  "veredicto": "REPROBADO v1",
+  "motivos": [
+    "❌ Sharpe dentro de muestra > 0,3",
+    "❌ Sharpe fuera de muestra > 0,3",
+    "✅ supera al 95 % de los placebos",
+    "✅ ≥ 80 operaciones",
+    "❌ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b02_reversion_eurgbp",
+    "nombre": "Reversión a la media en EURGBP (H1)",
+    "concepto": "Euro y libra son economías muy atadas: el par oscila en rango. Comprar en el extremo bajo y vender en el alto esperando el regreso al promedio. Gana seguido y poco; pierde raro pero fuerte si cambia el régimen.",
+    "regla": "Z-score del cierre H1 contra su media y desviación de 100 velas. Largo si z < -2, corto si z > 2. Sale cuando |z| < 0,25, a las 72 velas (3 días) o con stop de 3 ATR(14). Riesgo 1 % por operación.",
+    "para_quien": "Cuentas pequeñas en Latinoamérica con CFD desde 500-1.000 USD (spread bajo, stops moderados). En EE. UU., con un broker de forex regulado.",
+    "datos": "MT5 Exness EURGBP H1 (velas BID + spread real desde 2024-04-16)",
+    "potencial": "Alto como complemento: tiende a ganar justo cuando el trend following pierde en mercados laterales. Es el socio número uno de seguir la tendencia del oro.",
+    "siguiente": "Medir su correlación diaria contra b01; probar filtro de régimen (volatilidad o pendiente de la media larga) que apague el bot cuando el par se pone en tendencia."
+  }
+}

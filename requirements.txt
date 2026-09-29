@@ -1,0 +1,10 @@
+pandas>=2.0
+numpy
+pyarrow
+yfinance
+matplotlib
+scipy
+requests
+lxml
+MetaTrader5 ; platform_system == "Windows"
+ib_async

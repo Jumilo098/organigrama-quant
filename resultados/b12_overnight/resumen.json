@@ -1,0 +1,77 @@
+{
+  "bot": "b12_overnight",
+  "desde": "2000-01-04",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": 0.16848542768071176,
+    "cagr": 0.013199969635193876,
+    "vol": 0.12337470570307073,
+    "max_dd": -0.41329466786863966,
+    "dias": 6724,
+    "n_trades": 6724,
+    "win_rate": 0.5298929208804283,
+    "ret_medio_trade": 8.248746053715801e-05,
+    "profit_factor": 1.0333895658580072,
+    "suma_sin_top3pct": -3.742228237040596,
+    "suma_total": 0.5546456846518505
+  },
+  "dentro_muestra": {
+    "sharpe": 0.1910582508225223,
+    "cagr": 0.01607682464543503,
+    "vol": 0.12411327853404097,
+    "max_dd": -0.41329466786863966,
+    "dias": 5535,
+    "n_trades": 5535,
+    "win_rate": 0.5313459801264679,
+    "ret_medio_trade": 9.409867420858084e-05,
+    "profit_factor": 1.0385939028572877,
+    "suma_sin_top3pct": -3.0537756154196156,
+    "suma_total": 0.520836161744495
+  },
+  "fuera_muestra": {
+    "sharpe": 0.0597518907613146,
+    "cagr": -2.7549909028978803e-05,
+    "vol": 0.11992399181766471,
+    "max_dd": -0.28739888460097607,
+    "dias": 1189,
+    "n_trades": 1189,
+    "win_rate": 0.5231286795626577,
+    "ret_medio_trade": 2.84352589632932e-05,
+    "profit_factor": 1.0108501182160599,
+    "suma_sin_top3pct": -0.6882636416806771,
+    "suma_total": 0.033809522907355616
+  },
+  "placebo_n": 100,
+  "placebo_sharpe_mediana": -0.15443485749272715,
+  "placebo_percentil": 98.0,
+  "sharpe_noche_neto": 0.16848542768071176,
+  "sharpe_intradia_bruto": 0.06747751605336369,
+  "sharpe_buy_hold": 0.490750170302743,
+  "ret_anual_noche_bruto": 0.09638684005536388,
+  "ret_anual_intradia_bruto": 0.01241566043233128,
+  "notas": [
+    "Comparación bruta (sin costos), 50/50 SPY+QQQ: retorno anual medio de la noche 9.6 % vs intradía 1.2 %; Sharpe noche neto 0.17, intradía bruto 0.07, buy & hold 0.49.",
+    "Cada noche cuenta como una operación: la muestra es enorme, pero están autocorrelacionadas por régimen.",
+    "El costo decide todo: 2 lados por día. Con 5 pb por lado (acciones sueltas, CFD) el efecto desaparece.",
+    "Los open de yfinance son la primera cotización oficial; ejecutar en la subasta de apertura/cierre (MOO/MOC) es lo que hace realista el costo modelado.",
+    "Cambio de régimen: Nasdaq 23x5 aprobado desde el 6-dic-2026 (según la sesión 20). Medir antes/después."
+  ],
+  "veredicto": "DÉBIL",
+  "motivos": [
+    "❌ Sharpe dentro de muestra > 0,3",
+    "❌ Sharpe fuera de muestra > 0,3",
+    "✅ supera al 95 % de los placebos",
+    "✅ ≥ 80 operaciones",
+    "❌ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b12_overnight",
+    "nombre": "Efecto overnight (SPY + QQQ)",
+    "concepto": "La bolsa gana de noche: comprar al cierre y vender en la apertura del día siguiente, sin exposición durante la sesión.",
+    "regla": "Cada día hábil: compra al cierre, vende en la apertura siguiente. Cartera 50/50 SPY y QQQ. Costo 1,5 pb por lado (dos lados por noche).",
+    "para_quien": "EE. UU. con ETF de índices o micro y nano futuros, desde capital pequeño.",
+    "datos": "yfinance diarios SPY y QQQ (open y close ajustados)",
+    "potencial": "Medio. Es el caso de estudio perfecto de cambio de régimen: con el Nasdaq 23x5 desde diciembre de 2026, medir qué le pasa a este efecto antes y después será una contribución única de la comunidad.",
+    "siguiente": "Congelar hoy la medición pre-régimen y repetirla mes a mes después del cambio de horario del Nasdaq."
+  }
+}

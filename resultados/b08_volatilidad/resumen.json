@@ -1,0 +1,73 @@
+{
+  "bot": "b08_volatilidad",
+  "desde": "2006-07-17",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": 0.4891466191793394,
+    "cagr": 0.04300659272208951,
+    "vol": 0.09558841560092247,
+    "max_dd": -0.3125104286168947,
+    "dias": 5083,
+    "n_trades": 363,
+    "win_rate": 0.5730027548209367,
+    "ret_medio_trade": 0.0016217957026460447,
+    "profit_factor": 1.1924398648371475,
+    "suma_sin_top3pct": -0.17272238795187578,
+    "suma_total": 0.5887118400605142
+  },
+  "dentro_muestra": {
+    "sharpe": 0.48967484276914996,
+    "cagr": 0.04278576916767873,
+    "vol": 0.09479462717824498,
+    "max_dd": -0.3125104286168947,
+    "dias": 3894,
+    "n_trades": 259,
+    "win_rate": 0.5637065637065637,
+    "ret_medio_trade": 0.001823641027397096,
+    "profit_factor": 1.2211367357998995,
+    "suma_sin_top3pct": -0.09874306644764497,
+    "suma_total": 0.47232302609584786
+  },
+  "fuera_muestra": {
+    "sharpe": 0.4874978956121629,
+    "cagr": 0.043803808789512066,
+    "vol": 0.098183772804657,
+    "max_dd": -0.1258983378562143,
+    "dias": 1189,
+    "n_trades": 104,
+    "win_rate": 0.5961538461538461,
+    "ret_medio_trade": 0.0011191232111987153,
+    "profit_factor": 1.126055748219166,
+    "suma_sin_top3pct": -0.07397932150423048,
+    "suma_total": 0.11638881396466638
+  },
+  "placebo_n": 100,
+  "placebo_sharpe_mediana": 0.34898313926771285,
+  "placebo_percentil": 77.0,
+  "exposicion_prima": 0.5602990360023609,
+  "notas": [
+    "VIX al cierre (16:15 NY) vs SPY al cierre (16:00): 15 min de desfase, sin efecto práctico en diario.",
+    "ES UN PROXY: la pata de prima vendida se expresa como largo SPY, no como venta de opciones; el perfil de cola real de vender puts/spreads es peor que el de este proxy.",
+    "Pata miedo: 120 disparos en todo el periodo (muestra pequeña).",
+    "Operaciones = las de las dos patas juntas; su 'ret' no está ponderado por el 90/10.",
+    "Placebo: cada pata con su posición desplazada en el tiempo al azar."
+  ],
+  "veredicto": "DÉBIL",
+  "motivos": [
+    "✅ Sharpe dentro de muestra > 0,3",
+    "✅ Sharpe fuera de muestra > 0,3",
+    "❌ supera al 95 % de los placebos",
+    "✅ ≥ 80 operaciones",
+    "❌ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b08_volatilidad",
+    "nombre": "Vender / comprar miedo (proxy VIX sobre SPY, barbell 90/10)",
+    "concepto": "Comparar la volatilidad que descuentan las opciones con la que realmente ocurre. Pata 90 %: cobrar la prima del miedo cuando está cara. Pata 10 %: comprar protección barata antes de la tormenta.",
+    "regla": "PROXY. Pata 'vender prima' (90 %): largo SPY mientras VIX − volatilidad realizada 20d del SPY > 3 puntos y VIX < VIX3M (curva en contango). Pata 'comprar miedo' (10 %): corto SPY 10 sesiones cuando el VIX está por debajo de su percentil 20 de un año y cruza por encima de su media de 10 días. Costo 5 pb por lado.",
+    "para_quien": "Cuentas con opciones en Interactive Brokers desde 5.000-10.000 USD, siempre con spreads de riesgo definido y nunca vendiendo opciones descubiertas.",
+    "datos": "yfinance: ^VIX, ^VIX3M, SPY diarios",
+    "potencial": "Medio. Impulse Detector ya trae el contexto de opciones (la materia prima existe) y la volatilidad comprada es la mejor candidata para el 10 % del barbell de Taleb.",
+    "siguiente": "Montar la niñera de IBKR (agentes/ninera_ibkr.py) para registrar la implícita real por vencimiento y rehacer el disparador con la cadena, no con el VIX."
+  }
+}

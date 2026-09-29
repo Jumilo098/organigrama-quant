@@ -1,0 +1,71 @@
+{
+  "bot": "b11_pares",
+  "desde": "2006-01-03",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": -0.4777722011883647,
+    "cagr": -0.01438262428385828,
+    "vol": 0.029462627465853916,
+    "max_dd": -0.27524183620349796,
+    "dias": 5217,
+    "n_trades": 310,
+    "win_rate": 0.4258064516129032,
+    "ret_medio_trade": -0.003256211067544334,
+    "profit_factor": 0.706328829949367,
+    "suma_sin_top3pct": -1.6042922755009457,
+    "suma_total": -1.0094254309387436
+  },
+  "dentro_muestra": {
+    "sharpe": -0.3316516283410345,
+    "cagr": -0.01008169831066874,
+    "vol": 0.029274709094472624,
+    "max_dd": -0.16472975424654468,
+    "dias": 4028,
+    "n_trades": 234,
+    "win_rate": 0.42735042735042733,
+    "ret_medio_trade": -0.0020623120917852684,
+    "profit_factor": 0.7971861531310472,
+    "suma_sin_top3pct": -0.9644841180650205,
+    "suma_total": -0.48258102947775283
+  },
+  "fuera_muestra": {
+    "sharpe": -0.9597033359377881,
+    "cagr": -0.02879066457202306,
+    "vol": 0.03008431965340632,
+    "max_dd": -0.14580237725937717,
+    "dias": 1189,
+    "n_trades": 76,
+    "win_rate": 0.42105263157894735,
+    "ret_medio_trade": -0.006932163177118298,
+    "profit_factor": 0.501960177883433,
+    "suma_sin_top3pct": -0.6275760286099848,
+    "suma_total": -0.5268444014609907
+  },
+  "placebo_n": 100,
+  "placebo_sharpe_mediana": -0.16174833333783195,
+  "placebo_percentil": 4.0,
+  "notas": [
+    "Costo del corto (préstamo de acciones) no modelado; en ETFs líquidos suele ser bajo, en pares exóticos no.",
+    "Beta variable día a día: el rebalanceo diario de la cobertura real costaría algo más que lo modelado.",
+    "Los pares se eligieron a mano por intuición económica, no por escaneo; aun así hay sesgo de supervivencia (sabemos hoy que siguen existiendo y relacionados).",
+    "Riesgo de ruptura de régimen: si la relación se rompe, el stop a |z| > 4 corta pero no evita la pérdida."
+  ],
+  "veredicto": "REPROBADO v1",
+  "motivos": [
+    "❌ Sharpe dentro de muestra > 0,3",
+    "❌ Sharpe fuera de muestra > 0,3",
+    "❌ supera al 95 % de los placebos",
+    "✅ ≥ 80 operaciones",
+    "❌ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b11_pares",
+    "nombre": "Arbitraje estadístico de pares",
+    "concepto": "Dos gemelos (oro y plata, Coca-Cola y Pepsi...) que se separan tienden a volver a juntarse: comprar el rezagado y vender el adelantado, neutral al mercado.",
+    "regla": "Beta por regresión rodante de 120 días entre log-precios (solo datos pasados). Diferencial = logA - beta·logB; z-score de 60 días. Entra si |z| > 2 (largo el barato, corto el caro), sale cuando z cruza 0, stop si |z| > 4 o a los 30 días. Pares: GLD/SLV, KO/PEP, XOM/CVX, EWA/EWC.",
+    "para_quien": "Desde 5.000 USD en Interactive Brokers con ventas en corto, o cuentas pequeñas con CFD en Latinoamérica que permitan operar ambos lados.",
+    "datos": "yfinance diarios ajustados GLD, SLV, KO, PEP, XOM, CVX, EWA, EWC",
+    "potencial": "Medio-alto como descorrelacionador. Ideal para la fábrica de bots (la IA puede escanear cientos de pares). El riesgo: que la relación entre los gemelos se rompa para siempre.",
+    "siguiente": "Escanear pares con la fábrica y exigir que sobrevivan fuera de muestra con corrección por múltiples pruebas."
+  }
+}

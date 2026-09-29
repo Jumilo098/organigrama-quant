@@ -1,0 +1,71 @@
+{
+  "bot": "b14_cross_asset",
+  "desde": "2017-01-02",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": 0.1026045577180425,
+    "cagr": 0.005676656936320468,
+    "vol": 0.06689533818707831,
+    "max_dd": -0.16292368113947187,
+    "dias": 3003,
+    "n_trades": 589,
+    "win_rate": 0.48217317487266553,
+    "ret_medio_trade": 0.000264764591715944,
+    "profit_factor": 1.0501784169237511,
+    "suma_sin_top3pct": -0.9364083323503785,
+    "suma_total": 0.155946344520691
+  },
+  "dentro_muestra": {
+    "sharpe": -0.2855543242147435,
+    "cagr": -0.020884892393568943,
+    "vol": 0.055742809192271495,
+    "max_dd": -0.14570954648157974,
+    "dias": 1520,
+    "n_trades": 317,
+    "win_rate": 0.4605678233438486,
+    "ret_medio_trade": -0.0006368031634265994,
+    "profit_factor": 0.8488148227504878,
+    "suma_sin_top3pct": -0.5583656525031198,
+    "suma_total": -0.20186660280623203
+  },
+  "fuera_muestra": {
+    "sharpe": 0.39416232457561323,
+    "cagr": 0.03445207309549958,
+    "vol": 0.0766524691612372,
+    "max_dd": -0.11811991549496903,
+    "dias": 1483,
+    "n_trades": 272,
+    "win_rate": 0.5073529411764706,
+    "ret_medio_trade": 0.0013154887769372171,
+    "profit_factor": 1.20185660035099,
+    "suma_sin_top3pct": -0.21423246771183435,
+    "suma_total": 0.35781294732692304
+  },
+  "placebo_n": 100,
+  "placebo_sharpe_mediana": -0.1561626776377084,
+  "placebo_percentil": 81.0,
+  "notas": [
+    "Swap del oro aproximado (1,6 pb por noche al largo, 0 al corto); el swap de USDJPY no está modelado (el largo USDJPY suele COBRAR swap, así que la pata yen está subestimada en largos y sobreestimada en cortos).",
+    "La tasa ^TNX de yfinance cierra en hora de EE. UU. y las velas D1 de MT5 a las 00:00 UTC: por eso todas las señales van desplazadas un día.",
+    "Spread anterior a 2024-04-16 modelado con la mediana (el terminal guarda 0).",
+    "Cada pata es una posición 0/±1 al 50 %: el riesgo no está normalizado por volatilidad."
+  ],
+  "veredicto": "DÉBIL",
+  "motivos": [
+    "❌ Sharpe dentro de muestra > 0,3",
+    "✅ Sharpe fuera de muestra > 0,3",
+    "❌ supera al 95 % de los placebos",
+    "✅ ≥ 80 operaciones",
+    "❌ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b14_cross_asset",
+    "nombre": "Señal cruzada: dólar y tasas → oro; Nikkei → yen (D1)",
+    "concepto": "Usar la información de un activo para decidir en otro: tasas de bonos o el índice dólar para el oro, el Nikkei para el dólar frente al yen.",
+    "regla": "Pata oro (50 %): largo XAUUSD si el DXY y la tasa a 10 años (^TNX) cayeron en los últimos 20 días; corto si ambos subieron; fuera en otro caso. Pata yen (50 %): largo USDJPY si el Nikkei (^N225) subió en 20 días (apetito de riesgo), corto si bajó. Señales con datos del día anterior.",
+    "para_quien": "Perfil intermedio, con cualquier capital y desde cualquier país (CFD o futuros).",
+    "datos": "MT5 Exness XAUUSD y USDJPY D1 + yfinance DX-Y.NYB, ^TNX y ^N225",
+    "potencial": "Medio-alto. Es exactamente el trabajo de analista de la sesión; Impulse Detector ya lo hace al usar opciones para calibrar el stop del dólar frente al yen.",
+    "siguiente": "Sustituir la regla fija por un analista (agente) que pondere varias señales cruzadas; medir cada señal por separado antes de combinarlas."
+  }
+}

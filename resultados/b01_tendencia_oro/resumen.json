@@ -1,0 +1,77 @@
+{
+  "bot": "b01_tendencia_oro",
+  "desde": "2017-01-03",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": 0.5201139741796028,
+    "cagr": 0.1070595465062989,
+    "vol": 0.19691892199485433,
+    "max_dd": -0.46087296060100336,
+    "dias": 2989,
+    "n_trades": 1979,
+    "win_rate": 0.3415866599292572,
+    "ret_medio_trade": 0.0006138546528539981,
+    "profit_factor": 1.1261586478780554,
+    "suma_sin_top3pct": -2.255087762124055,
+    "suma_total": 1.2148183579980623,
+    "R_medio": 0.0613854652853998,
+    "R_medio_sin_top3pct": -0.1174524876106279
+  },
+  "dentro_muestra": {
+    "sharpe": 0.0043443614531650625,
+    "cagr": -0.021385320526033924,
+    "vol": 0.19675845837728304,
+    "max_dd": -0.44459841744368656,
+    "dias": 1513,
+    "n_trades": 958,
+    "win_rate": 0.3235908141962422,
+    "ret_medio_trade": 7.641797250750188e-06,
+    "profit_factor": 1.0014872965255421,
+    "suma_sin_top3pct": -1.7570928172369311,
+    "suma_total": 0.00732084176621868,
+    "R_medio": 0.0007641797250749935,
+    "R_medio_sin_top3pct": -0.18913808581667718
+  },
+  "fuera_muestra": {
+    "sharpe": 1.0487350798051591,
+    "cagr": 0.26074677037115257,
+    "vol": 0.19693419129090134,
+    "max_dd": -0.26545591415260383,
+    "dias": 1476,
+    "n_trades": 1021,
+    "win_rate": 0.3584720861900098,
+    "ret_medio_trade": 0.0011826616221663501,
+    "profit_factor": 1.2565299199869941,
+    "suma_sin_top3pct": -0.5356874474200515,
+    "suma_total": 1.2074975162318435,
+    "R_medio": 0.11826616221663502,
+    "R_medio_sin_top3pct": -0.054109843173742636
+  },
+  "placebo_n": 100,
+  "placebo_sharpe_mediana": -0.12755654134397695,
+  "placebo_percentil": 98.0,
+  "R_medio": 0.0613854652853998,
+  "notas": [
+    "Swap no modelado: en XAUUSD el largo paga ~55 USD/lote/noche en Exness; las operaciones de varios días sobrestiman el resultado de los largos.",
+    "Spread anterior a 2024-04-16 modelado con la mediana (el terminal guarda 0).",
+    "Equity con riesgo fijo del 1 % sin lote mínimo: ver cartera/lote_minimo.py para la cuenta real."
+  ],
+  "veredicto": "PROMETEDOR, NO VALIDADO",
+  "motivos": [
+    "❌ Sharpe dentro de muestra > 0,3",
+    "✅ Sharpe fuera de muestra > 0,3",
+    "✅ supera al 95 % de los placebos",
+    "✅ ≥ 80 operaciones",
+    "❌ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b01_tendencia_oro",
+    "nombre": "Tendencia en oro (XAUUSD M15)",
+    "concepto": "Seguir la dirección del oro y dejar correr la ganancia con trailing stop. Acierta 20-35 % de las veces; las ganadoras pagan a las perdedoras.",
+    "regla": "Largo si el cierre M15 rompe el máximo de las últimas 96 velas (un día) con la EMA de 800 velas (~8 días) subiendo; corto al revés. Stop inicial 2 ATR(14), trailing 3 ATR. Riesgo 1 % por operación.",
+    "para_quien": "Latinoamérica con CFD desde 1.300-1.500 USD (Monte Carlo de la sesión 20: por debajo, el lote mínimo 0,01 sube el riesgo real por encima del plan). EE. UU. con microfuturos de oro (MGC) desde ~10.000 USD.",
+    "datos": "MT5 Exness XAUUSD M15 (velas BID + spread real desde 2024-04-16)",
+    "potencial": "Alto. Ya hay ~2.700 operaciones de backtest del Runner y telemetría en vivo: es el ANCLA.",
+    "siguiente": "Comparar contra el Runner real en operacionesreales.com; medir correlación de cada bot nuevo contra este."
+  }
+}

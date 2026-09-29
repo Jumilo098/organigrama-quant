@@ -1,0 +1,71 @@
+{
+  "bot": "b04_momentum_acciones",
+  "desde": "2000-01-03",
+  "hasta": "2026-09-29",
+  "total": {
+    "sharpe": 0.5674560824118642,
+    "cagr": 0.08085407300772163,
+    "vol": 0.1598643650772725,
+    "max_dd": -0.28903215146553485,
+    "dias": 6725,
+    "n_trades": 239,
+    "win_rate": 0.602510460251046,
+    "ret_medio_trade": 0.03820117930102805,
+    "profit_factor": 3.134754440551327,
+    "suma_sin_top3pct": 5.184315509892543,
+    "suma_total": 9.130081852945704
+  },
+  "dentro_muestra": {
+    "sharpe": 0.5049796464128862,
+    "cagr": 0.0695574810724966,
+    "vol": 0.15814335790079131,
+    "max_dd": -0.28903215146553485,
+    "dias": 5536,
+    "n_trades": 183,
+    "win_rate": 0.6120218579234973,
+    "ret_medio_trade": 0.032243199238247165,
+    "profit_factor": 2.8558130360163023,
+    "suma_sin_top3pct": 3.6821405507990654,
+    "suma_total": 5.9005054605992315
+  },
+  "fuera_muestra": {
+    "sharpe": 0.842484446361228,
+    "cagr": 0.1350446058850514,
+    "vol": 0.16767733881837274,
+    "max_dd": -0.15709023627741547,
+    "dias": 1189,
+    "n_trades": 56,
+    "win_rate": 0.5714285714285714,
+    "ret_medio_trade": 0.05767100700618697,
+    "profit_factor": 3.9429213719964826,
+    "suma_sin_top3pct": 1.8581503006440387,
+    "suma_total": 3.22957639234647
+  },
+  "placebo_n": 100,
+  "placebo_sharpe_mediana": 0.44091627305590575,
+  "placebo_percentil": 97.0,
+  "notas": [
+    "Universo de ETFs para evitar sesgo de supervivencia: con acciones individuales tomadas de la lista de HOY el backtest saldría inflado (las que quebraron no están).",
+    "El universo lo elegí a mano en 2026: sigue habiendo un sesgo de selección leve (sé qué ETFs existen hoy). XLRE (2015) y XLC (2018) entran al universo cuando tienen 12 meses de historia.",
+    "Placebo: la misma rotación mensual eligiendo 4 ETFs al azar entre los disponibles.",
+    "Operaciones = tramos continuos de tenencia por ETF (un ETF que se queda 3 meses cuenta como una)."
+  ],
+  "veredicto": "CANDIDATO A FORWARD",
+  "motivos": [
+    "✅ Sharpe dentro de muestra > 0,3",
+    "✅ Sharpe fuera de muestra > 0,3",
+    "✅ supera al 95 % de los placebos",
+    "✅ ≥ 80 operaciones",
+    "✅ sigue positivo sin el mejor 3 %"
+  ],
+  "ficha": {
+    "id": "b04_momentum_acciones",
+    "nombre": "Momentum mensual (ETFs de sectores, países y activos)",
+    "concepto": "Lo que viene subiendo tiende a seguir subiendo: cada mes se compran los activos más fuertes de los últimos 6-12 meses y se rotan los que se quedan atrás.",
+    "regla": "Último día hábil de cada mes: retorno 12-1 (de hace 252 a hace 21 sesiones) de 20 ETFs; se compran los 4 mejores a pesos iguales (solo si su 12-1 es positivo; si no, ese hueco queda en efectivo) y se mantienen un mes. Costo 5 pb por lado sobre el giro.",
+    "para_quien": "Inversionistas con Interactive Brokers desde ~5.000 USD (más fácil con acciones o ETFs fraccionados). Sirve desde cualquier país.",
+    "datos": "yfinance, cierres diarios ajustados de ETFs (sectores SPDR, países y activos)",
+    "potencial": "Medio-alto a largo plazo, bajo en semanas: opera una vez al mes, juntar 80 operaciones toma tiempo, depende del mercado general y sufre caídas bruscas cuando el momentum se voltea.",
+    "siguiente": "Pasarlo a acciones individuales con un universo point-in-time (sin supervivencia) y medir su correlación contra b01; probar el filtro de tendencia 1h/4h/1d de la tabla de la sesión."
+  }
+}
