@@ -4,6 +4,9 @@ Instituto Quant · **sesión 20** (24-sep-2026). Lo prometido en clase: *«un pr
 con su respectivo backtest, entregado en un repositorio, para que de esta lista puedan escoger los que tengan
 más sentido para ustedes»*.
 
+> 👉 **¿Primera vez aquí? Empieza por [`EMPEZAR.md`](EMPEZAR.md)** (instalación, primer bot, tu v2) y luego
+> [`docs/ELEGIR_BOT.md`](docs/ELEGIR_BOT.md).
+
 > ⚠️ **Todo aquí es investigación.** Son prototipos v1 con parámetros de manual, no sistemas para dinero
 > real ni recomendaciones de inversión. Un veredicto «candidato» significa «merece forward en demo», nada más.
 
@@ -23,7 +26,8 @@ No pienses en un bot: piensa en una **organización**. Bots deterministas y desc
 | [`cartera/`](cartera/) | Matemática de la cartera descorrelacionada, lote mínimo y el **mayordomo** que reasigna pesos |
 | [`agentes/`](agentes/) | Roles del organigrama: niñera de IBKR (solo lectura, paper), prompts del analista y del árbitro |
 | [`fabrica/`](fabrica/) | La fábrica de bots desechables, con la corrección por número de pruebas |
-| [`docs/`](docs/) | El concepto de la sesión |
+| [`docs/`](docs/) | Concepto de la sesión, cómo elegir bot, plantilla de v2, prompts y preguntas frecuentes |
+| [`investigacion/`](investigacion/) | Pre-registros y hallazgos de los alumnos (uno por carpeta) |
 
 ## Los 15 bots y su veredicto v1
 
@@ -101,6 +105,8 @@ velas BID y el spread real solo viene informado desde el 16-abr-2024 (antes se m
 acciones, ETFs y futuros usan yfinance. Todo se guarda en `datos/cache/` (fuera de git).
 
 ## Cómo contribuir (la línea de investigación)
+
+El flujo completo (fork, rama, pre-registro, Pull Request) está en [`CONTRIBUIR.md`](CONTRIBUIR.md). En corto:
 
 1. Escoge **un** bot de la tabla que encaje con tu capital, tu país y tu broker (lo dice su ficha).
 2. Primero infraestructura: que abra y cierre una posición en tu broker demo, aunque sea con entrada aleatoria.

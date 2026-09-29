@@ -20,7 +20,12 @@ RAIZ = Path(__file__).resolve().parents[1]
 CACHE = RAIZ / "datos" / "cache"
 CACHE.mkdir(parents=True, exist_ok=True)
 
-MT5_TERMINAL = r"C:\Program Files\MetaTrader 5 EXNESS\terminal64.exe"
+import os
+
+# Ruta del terminal: variable de entorno MT5_TERMINAL o, si no existe, la que MT5 tenga registrada.
+MT5_TERMINAL = os.environ.get("MT5_TERMINAL", r"C:\Program Files\MetaTrader 5 EXNESS\terminal64.exe")
+# Sufijos que usan los brokers según el tipo de cuenta (Exness Standard = "m", otros "." o "+").
+SUFIJOS = ["", "m", ".", "+", ".r", "_i"]
 _TF = {"M1": 1, "M5": 5, "M15": 15, "M30": 30, "H1": 16385, "H4": 16388, "D1": 16408}
 
 
@@ -37,12 +42,17 @@ def mt5(simbolo: str, tf: str = "M15", desde: str = "2017-01-01", refrescar: boo
         import MetaTrader5 as m
     except ImportError as e:  # pragma: no cover
         raise RuntimeError("Instala MetaTrader5 (pip install MetaTrader5) y abre el terminal") from e
-    if not m.initialize(MT5_TERMINAL):
-        raise RuntimeError(f"MT5 no inicializa: {m.last_error()}")
+    ok = m.initialize(MT5_TERMINAL) if os.path.exists(MT5_TERMINAL) else m.initialize()
+    if not ok:
+        raise RuntimeError(f"MT5 no inicializa ({m.last_error()}): abre el terminal y define MT5_TERMINAL si hace falta")
     try:
-        m.symbol_select(simbolo, True)
-        info = m.symbol_info(simbolo)
-        r = m.copy_rates_range(simbolo, _TF[tf], dt.datetime.fromisoformat(desde), dt.datetime.now())
+        nombres = {s.name for s in (m.symbols_get() or [])}
+        real = next((simbolo + suf for suf in SUFIJOS if simbolo + suf in nombres), None)
+        if real is None:
+            raise RuntimeError(f"Tu broker no tiene {simbolo} (probé los sufijos {SUFIJOS})")
+        m.symbol_select(real, True)
+        info = m.symbol_info(real)
+        r = m.copy_rates_range(real, _TF[tf], dt.datetime.fromisoformat(desde), dt.datetime.now())
         if r is None or len(r) == 0:
             raise RuntimeError(f"Sin datos para {simbolo} {tf}: {m.last_error()}")
     finally:

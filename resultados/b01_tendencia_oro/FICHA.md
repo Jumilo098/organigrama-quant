@@ -23,7 +23,7 @@
 | Win rate | 32.4 % | 35.8 % | 34.2 % |
 | Profit factor | 1.00 | 1.26 | 1.13 |
 
-Placebo (100 corridas): mediana Sharpe -0.13, la señal supera al **98 %**.
+Placebo (100 corridas): mediana Sharpe -0.12, la señal supera al **98 %**.
 
 Sin el mejor 3 % de las operaciones, la suma de retornos queda en -225.5 % (total 121.5 %).
 
